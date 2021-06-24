@@ -66,6 +66,13 @@ world : 1
 What you see is the words that we inserted in step 5, followed by the amount of times that word was processed. That's why the word `hello` appears twice.
 
 ## Understanding the Topology
+The **topology** of a Kafka Streams Application refers to the way in which the data will be processed in the stream. When we define a Topology, what we are doing is defining a set of operations which will transform the data as it is streamed.
+The programming paradigm used by Kafka Streams is called **dataflow programming**. The logic of the application is structured as a **Direct Acyclic Graph (DAG)**. There are several advantages of this paradigm:
+ * Easy to understand
+ * Easy to standardize
+ * Easy to visualize
+ * Easy to parallelize
+
 ![Topology](docs/topology.png)
 1️⃣ **Flat Map** operation to map 1 record into many. In our case, every sentences is mapped into multiple records: one for each word in the sentence. Also the case is lowered to make the process case-insensitive.
 
@@ -89,9 +96,7 @@ public class WordCountApp {
         StreamsBuilder streamsBuilder = new StreamsBuilder();
         // 2. Build the Topology
         streamsBuilder.<String, String>stream("sentences")
-        .flatMapValues((key, value) ->
-        Arrays.asList(value.toLowerCase()
-        .split(" "))) // Flat Map Values splits the sentences into words, and creates multiple entries in the stream
+        .flatMapValues((key, value) -> Arrays.asList(value.toLowerCase().split(" "))) // Flat Map Values splits the sentences into words, and creates multiple entries in the stream
         .groupBy((key, value) -> value) // groupBy groupes all values in the stream by a given criteria, in this case, the same word. It becomes the key of the stream
         .count(Materialized.with(Serdes.String(), Serdes.Long())) // count converts the KStream in a KTable, storing the data in a Data Store. By default is RocksDB
         .toStream() // Transform the KTable into a KStream to stream every change in the state
