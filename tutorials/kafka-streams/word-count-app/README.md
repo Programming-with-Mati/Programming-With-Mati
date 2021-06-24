@@ -88,7 +88,6 @@ In the class [WordCountApp](https://github.com/Programming-with-Mati/kafka-strea
 
 public class WordCountApp {
     
-}
     public static void main(String[] args) {
         // 1. Load Kafka Streams properties
         Properties props = getConfig(); 
