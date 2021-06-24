@@ -76,5 +76,38 @@ What you see is the words that we inserted in step 5, followed by the amount of 
 Finally, we stream the results into the topic `word-count`. We can stream a table using the method `toStream`, which will stream the latest value that was stored for a given key, everytime that key is updated.
 
 ## Taking a look at the code
+In the class [WordCountApp](https://github.com/Programming-with-Mati/kafka-streams-word-count/blob/main/src/main/java/com/github/programmingwithmati/kafka/streams/wordcount/WordCountApp.java) we can see the following code:
+```java
 
+public class WordCountApp {
+    
+}
+    public static void main(String[] args) {
+        // 1. Load Kafka Streams properties
+        Properties props = getConfig(); 
 
+        StreamsBuilder streamsBuilder = new StreamsBuilder();
+        // 2. Build the Topology
+        streamsBuilder.<String, String>stream("sentences")
+        .flatMapValues((key, value) ->
+        Arrays.asList(value.toLowerCase()
+        .split(" "))) // Flat Map Values splits the sentences into words, and creates multiple entries in the stream
+        .groupBy((key, value) -> value) // groupBy groupes all values in the stream by a given criteria, in this case, the same word. It becomes the key of the stream
+        .count(Materialized.with(Serdes.String(), Serdes.Long())) // count converts the KStream in a KTable, storing the data in a Data Store. By default is RocksDB
+        .toStream() // Transform the KTable into a KStream to stream every change in the state
+        .to("word-count", Produced.with(Serdes.String(), Serdes.Long())); // Finally, stream the results into the word-count topic
+        // 3. Create the Kafka Streams Application
+        KafkaStreams kafkaStreams = new KafkaStreams(streamsBuilder.build(), props);
+        // 4. Start the application
+        kafkaStreams.start();
+
+        // attach shutdown handler to catch control-c
+        Runtime.getRuntime().addShutdownHook(new Thread(kafkaStreams::close));
+    }
+    // ...
+}
+```
+As you can see, the High Level DSL is very easy and intuitive to use. The fact that works as a fluent API makes it very easy to read an maintain as well.
+
+## Next Tutorial
+In our next tutorial, we will be creating a Streams application to transform Speech into text and to parse voice commands. We will use Stateless operations, and we will learn about the interface KStream.
