@@ -3,7 +3,7 @@ The Kafka Streams word count application is the classic "Hello World!" example f
 It helps to introduce some main concepts of the library.
 
 ## Youtube Video Tutorial
-<iframe width="560" height="315" src="https://www.youtube.com/embed/MR5hllNC9hk" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+<iframe align="center" width="560" height="315" src="https://www.youtube.com/embed/MR5hllNC9hk" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
 ## Code
 You can find the code of this project in the Github repository [Kafka Streams Word Count](https://github.com/Programming-with-Mati/kafka-streams-word-count)
