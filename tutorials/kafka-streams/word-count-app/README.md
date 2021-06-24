@@ -2,9 +2,9 @@
 The Kafka Streams word count application is the classic "Hello World!" example for Kafka Streams.
 It helps to introduce some main concepts of the library.
 
-## Youtube Video Tutorial
+## Video Tutorial
+By the way, you can follow me on YouTube for more Software Engineering Content in my channel [Programming with Mati](https://www.youtube.com/channel/UC0clXTEN6Fu277RTw6jCfAg).
 <iframe align="center" width="560" height="315" src="https://www.youtube.com/embed/MR5hllNC9hk" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-
 ## Code
 You can find the code of this project in the Github repository [Kafka Streams Word Count](https://github.com/Programming-with-Mati/kafka-streams-word-count)
 ## Application Diagram
@@ -20,7 +20,7 @@ The Java application will read sentences from the `sentences` topic in Kafka and
 ## Running the project
 
 ### Starting Kafka
-First, we need to start Kafka. For that we have a [docker-compose.yml file](https://github.com/Programming-with-Mati/kafka-streams-word-count/blob/main/docker-compose.yml) that will create the necessary resources for us. It will start a Zookeeper instance and a Kafka broker. It will also create the necessary topics using the script found in the [create-topics.sh](./scripts/create-topics.sh) file.
+First, we need to start Kafka. For that we have a [docker-compose.yml file](https://github.com/Programming-with-Mati/kafka-streams-word-count/blob/main/docker-compose.yml) that will create the necessary resources for us. It will start a Zookeeper instance and a Kafka broker. It will also create the necessary topics using the script found in the [create-topics.sh](https://github.com/Programming-with-Mati/kafka-streams-word-count/blob/main/scripts/create-topics.sh) file.
 ```shell
 docker compose -f ./docker-compose.yml up
 ```
