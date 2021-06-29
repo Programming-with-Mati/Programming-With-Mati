@@ -4,6 +4,7 @@ In this app, what we want to accomplish is the following:
 * Understand the concept of **stateless** operations
 * Work with the class `KStream`
 * Get to know a bit better the `Serdes` interface and how we have to use it
+* Use `TopologyTestDriver` to unit test our Kafka Streams code
 
 ## Stateless Processing
 Stateless processing is a type of processing that doesn't have any memory, or doesn't store any state, and therefore the only context of the process is the input data and the algoritm that will process it.
