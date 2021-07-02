@@ -21,7 +21,7 @@ The program will print every vehicle independent of the other, without keeping a
 * Easier to scale, because there is no data store involved
 * Because each event is independent, the processing is threadsafe
 
-Anyway, most applications can manage to be purely stateless, that's why we will introduce the concept of [Stateful Processing]() in the following tutorials.
+Anyway, most applications can't manage to be purely stateless, that's why we will introduce the concept of [Stateful Processing]() in the following tutorials.
 
 ## KStream
 The High-level DSL brings a powerful abstraction to deal with Stateless processing. It's called `KStream`. It represents a stream of events independent of each other.
